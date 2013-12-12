@@ -16,6 +16,12 @@ jquery.google.calendar
  Google Calendar を公開設定し、アカウントを cal_closed クラスに指定します。
  カレンダーに何か登録されている日が、休業日として表示されます。
 
+動作デモ
+--------
+
+ 実際に動くデモはこちら。
+ http://amatubu.skr.jp/jquery/calendar/demo.htm
+
 免責事項
 --------
 
