@@ -15,7 +15,9 @@
 
       cal_header : '<tr><th>日<\/th><th>月<\/th><th>火<\/th><th>水<\/th><th>木<\/th><th>金<\/th><th>土<\/th><\/tr>',
       cal_holiday_class : 'holiday',
-      cal_closed_class  : 'closed'
+      cal_closed_class  : 'closed',
+
+      cal_start_date : new Date()
     };
     var opts = $.extend(defaults, options);
 
@@ -51,10 +53,9 @@
       create_calender( year, month, opts );
     });
 
-    // 今日の日付から年・月を得る
-    var today = new Date();
-    var year = today.getFullYear();
-    var month = today.getMonth()+1;
+    // 日付から年・月を得る
+    var year = opts.cal_start_date.getFullYear();
+    var month = opts.cal_start_date.getMonth()+1;
     $(opts.cal_year).text(year);
     $(opts.cal_month).text(month);
 
