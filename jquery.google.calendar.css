@@ -37,6 +37,18 @@ table.table-ca td.closed {
   background: #c9c2bc;
 }
 
+/* 午前休 */
+table.table-ca td.closed_am {
+  background: -moz-linear-gradient(left, #c9c2bc, #ffffff);
+  background: -webkit-gradient(linear, left top, right top, from(#c9c2bc), to(#ffffff));
+}
+
+/* 午後休 */
+table.table-ca td.closed_pm {
+  background: -moz-linear-gradient(left, #ffffff, #c9c2bc);
+  background: -webkit-gradient(linear, left top, right top, from(#ffffff), to(#c9c2bc));
+}
+
 /* 読み込み中... */
 #cal_loading {
   position: absolute;

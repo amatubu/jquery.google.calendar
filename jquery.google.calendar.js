@@ -1,4 +1,5 @@
-// jquery.google.calendar
+/* jquery.google.calendar v1.1
+*/
 (function($){
   $.fn.calendar = function(options){
     var defaults = {
@@ -149,6 +150,9 @@
     var first_date = new Date(year, month-1, 1); // 月は-1する
     var first_day = first_date.getDay(); // 0:日曜日、...
 
+    // 適用するクラスがオブジェクトかどうか
+    var applyClass_is_object = Object.prototype.toString.call(applyClass) == "[object Object]";
+
     // 得られた予定情報を処理
     $.each(items,function(i){
       // 予定の開始日だけを見る
@@ -159,7 +163,19 @@
         if ( parseInt(dt[1],10) == year && parseInt(dt[2],10) == month ) {
           // カレンダー上の該当場所に指定クラスを適用する
           var index = parseInt(dt[3], 10) + first_day - 1;
-          $(opts.cal_table+" td:eq("+index+")").addClass(applyClass).removeClass(removeClass);
+
+          // 適用するクラスがオブジェクトならば、予定の内容により適用するクラスを変える
+          var ac;
+          if ( applyClass_is_object ) {
+            ac = applyClass[items[i].title.$t];
+            // 該当する項目がなければ、デフォルト設定を利用
+            if ( !ac ) {
+              ac = applyClass["default"];
+            }
+          } else {
+            ac = applyClass;
+          }
+          $(opts.cal_table+" td:eq("+index+")").addClass(ac).removeClass(removeClass);
         }
       }
     });

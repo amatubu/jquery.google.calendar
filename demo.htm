@@ -19,8 +19,15 @@ h1 {
 $(function(){
   $("#cl").calendar({
     cal_closed : 'jquery.calendar@gmail.com',
-		cal_holiday : 'ja.japanese%23holiday%40group.v.calendar.google.com'
-	});
+    cal_holiday : 'ja.japanese%23holiday%40group.v.calendar.google.com',
+
+    cal_closed_class : {
+      '休業日' : 'closed',
+      '午前休' : 'closed_am',
+      '午後休' : 'closed_pm',
+      'default' : 'closed',
+    }
+  });
 });
 </script>
 </head>
