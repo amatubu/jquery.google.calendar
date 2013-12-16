@@ -6,6 +6,8 @@ jquery.google.calendar
 動作環境
 --------
 
+ jQuery のプラグインなので、jQuery が必要です。
+
  jQuery 1.10.2 で動作確認。
 
 使い方
@@ -37,4 +39,4 @@ jquery.google.calendar
  にて配布します。
 
 
-2013.12.13 naoki iimura
+2013.12.16 naoki iimura

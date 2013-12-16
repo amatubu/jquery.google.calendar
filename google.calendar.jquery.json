@@ -1,0 +1,22 @@
+{
+    "name": "google.calendar",
+    "version": "1.1.1",
+    "title": "jQuery Google Calendar",
+    "author": {
+        "name": "Naoki IIMURA",
+        "email": "amatubu@mac.com"
+    },
+    "licenses": [
+        {
+            "type": "BSD-2-Clause",
+            "url": "https://github.com/amatubu/jquery.google.calendar/blob/master/LICENSE"
+        }
+    ],
+    "dependencies": {
+        "jquery": ">=1.5"
+    },
+    "description": "jQuery calender plugin based on Google Calendar.",
+    "keywords": [ "calendar", "google calendar" ],
+    "homepage": "https://github.com/amatubu/jquery.google.calendar",
+    "bugs": "https://github.com/amatubu/jquery.google.calendar/issues"
+}
