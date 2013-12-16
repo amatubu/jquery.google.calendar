@@ -16,7 +16,7 @@
         "jquery": ">=1.5"
     },
     "description": "jQuery calender plugin based on Google Calendar.",
-    "keywords": [ "calendar", "google calendar" ],
+    "keywords": [ "calendar", "google" ],
     "homepage": "https://github.com/amatubu/jquery.google.calendar",
     "bugs": "https://github.com/amatubu/jquery.google.calendar/issues"
 }
