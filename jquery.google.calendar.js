@@ -176,6 +176,18 @@
         $(opts.cal_loading).hide();
       }
     });
+
+    // 次の月、前の月の有効、無効を切り替える
+    if ( opts.cal_min_date && opts.cal_min_date > new Date( year, month-1-1, 1 ) ) {
+      $(opts.prev_month).hide();
+    } else {
+      $(opts.prev_month).show();
+    }
+    if ( opts.cal_max_date && opts.cal_max_date < new Date( year, month-1+1, 1 ) ) {
+      $(opts.next_month).hide();
+    } else {
+      $(opts.next_month).show();
+    }
   };
 
   // 日付をISO8601拡張表記（YYYY-MM-DD）に
