@@ -43,7 +43,9 @@
       cal_holiday_class : 'holiday',
       cal_closed_class  : 'closed',
 
-      cal_start_date : new Date()
+      cal_start_date : new Date(),
+      cal_min_date : new Date( 2013, 10-1, 1 ),
+      cal_max_date : null
     };
     var opts = $.extend(defaults, options);
 
@@ -57,10 +59,15 @@
       } else {
         month--;
       }
-      $(opts.cal_year).text(year);
-      $(opts.cal_month).text(month);
 
-      create_calender( year, month, opts );
+      if ( opts.cal_min_date && opts.cal_min_date > new Date( year, month-1, 1 ) ) {
+        // 有効範囲外
+      } else {
+        $(opts.cal_year).text(year);
+        $(opts.cal_month).text(month);
+
+        create_calender( year, month, opts );
+      }
 
       return false;
     });
@@ -75,10 +82,15 @@
       } else {
         month++;
       }
-      $(opts.cal_year).text(year);
-      $(opts.cal_month).text(month);
 
-      create_calender( year, month, opts );
+      if ( opts.cal_max_date && opts.cal_max_date < new Date( year, month-1, 1 ) ) {
+        // 有効範囲外
+      } else {
+        $(opts.cal_year).text(year);
+        $(opts.cal_month).text(month);
+
+        create_calender( year, month, opts );
+      }
 
       return false;
     });

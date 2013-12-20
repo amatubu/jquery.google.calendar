@@ -17,20 +17,24 @@ h1 {
 <script type="text/javascript" src="./jquery.google.calendar.js"></script>
 <script type="text/javascript">
 $(function(){
+  var today = new Date();
+  var next_month = new Date( today.getFullYear(), today.getMonth()+1, 1 );
+  var next_year = new Date( today.getFullYear()+1, today.getMonth(), 1 );
+
   $("#cl").calendar({
-    cal_closed : 'jquery.calendar@gmail.com',
+    cal_closed : 'jquery.calendar%40gmail.com',
     cal_holiday : 'ja.japanese%23holiday%40group.v.calendar.google.com',
+
+    cal_min_date : new Date( 2013, 10-1, 1 ),
+    cal_max_date : next_year,
 
     cal_closed_class : {
       '休業日' : 'closed',
       '午前休' : 'closed_am',
       '午後休' : 'closed_pm',
       'default' : 'closed',
-    }
+    },
   });
-
-  var today = new Date();
-  var next_month = new Date( today.getFullYear(), today.getMonth()+1, 1 );
 
   $("#cl2").calendar({
     cal_closed : 'jquery.calendar%40gmail.com',
@@ -44,6 +48,8 @@ $(function(){
     cal_loading : '#cal_loading2',
 
     cal_start_date : next_month,
+    cal_min_date : new Date( 2013, 11-1, 1 ),
+    cal_max_date : new Date( next_year.getFullYear(), next_year.getMonth()+1, 1 ),
 
     cal_closed_class : {
       '休業日' : 'closed',
