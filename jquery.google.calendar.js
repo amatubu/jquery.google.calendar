@@ -1,5 +1,5 @@
 /**
- * jquery.google.calendar.js
+ * jquery.google.calendar.js    v1.2
  *
  * Copyright (c) 2013 Naoki IIMURA
  * All rights reserved.
