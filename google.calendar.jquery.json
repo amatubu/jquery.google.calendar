@@ -1,6 +1,6 @@
 {
     "name": "google.calendar",
-    "version": "1.2",
+    "version": "2.0",
     "title": "jQuery Google Calendar",
     "author": {
         "name": "Naoki IIMURA",
@@ -15,7 +15,7 @@
     "dependencies": {
         "jquery": ">=1.5"
     },
-    "description": "jQuery calender plugin based on Google Calendar.",
+    "description": "jQuery calender plugin based on Google Calendar v3.",
     "keywords": [ "calendar", "google" ],
     "homepage": "https://github.com/amatubu/jquery.google.calendar",
     "bugs": "https://github.com/amatubu/jquery.google.calendar/issues"

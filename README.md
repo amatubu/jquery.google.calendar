@@ -1,7 +1,7 @@
 jquery.google.calendar
 ======================
 
- Google Calendar API を用いて、Google Calendar に登録された内容をもとにカレンダーを作成する jQuery プラグインです。
+ Google Calendar API v3 を用いて、Google Calendar に登録された内容をもとにカレンダーを作成する jQuery プラグインです。
 
 動作環境
 --------
@@ -22,6 +22,9 @@ jquery.google.calendar
  を適用する機能を追加しました。
 
  バージョン 1.2 より、カレンダーの有効範囲を指定する機能を追加しました。
+
+ バージョン 2.0 より、Google Calendar API v3 に対応しました。
+ API key を取得し、「api_key」パラメータに指定する必要があります。
 
 動作デモ
 --------
@@ -44,4 +47,4 @@ jquery.google.calendar
  にて配布します。
 
 
-2013.12.20 naoki iimura
+2014.11.27 naoki iimura
