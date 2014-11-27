@@ -1,7 +1,7 @@
 /**
- * jquery.google.calendar.js    v1.2
+ * jquery.google.calendar.js    v2.0
  *
- * Copyright (c) 2013 Naoki IIMURA
+ * Copyright (c) 2013-2014 Naoki IIMURA
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,6 +29,8 @@
 (function($){
   $.fn.calendar = function(options){
     var defaults = {
+      api_key    : '{YOUR_API_KEY}',
+
       prev_month : '#prev_month',
       next_month : '#next_month',
       cal_year   : '#cal_year',
@@ -156,9 +158,9 @@
     $(opts.cal_loading).show();
 
     // 休館日の情報を得る
-    $.getJSON('https://www.google.com/calendar/feeds/'+opts.cal_closed+'/public/full-noattendees?alt=json-in-script&orderby=starttime&sortorder=ascend&start-min='+min_date+'&start-max='+max_date+'&callback=?', function (json) {
-      if ( json.feed.entry ) {
-        update_date_class( json.feed.entry, opts.cal_closed_class, opts.cal_holiday_class, opts );
+    $.getJSON('https://www.googleapis.com/calendar/v3/calendars/'+opts.cal_closed+'/events?key='+opts.api_key+'&orderBy=startTime&singleEvents=true&timeMin='+min_date+'&timeMax='+max_date+'&callback=?', function (json) {
+      if ( json.items ) {
+        update_date_class( json.items, opts.cal_closed_class, opts.cal_holiday_class, opts );
       }
       loading--;
       if ( loading == 0 ) {
@@ -167,9 +169,9 @@
     });
 
     // 祝日の情報を得る
-    $.getJSON('https://www.google.com/calendar/feeds/'+opts.cal_holiday+'/public/full-noattendees?alt=json-in-script&orderby=starttime&sortorder=ascend&start-min='+min_date+'&start-max='+max_date+'&callback=?', function (json) {
-      if ( json.feed.entry ) {
-        update_date_class( json.feed.entry, opts.cal_holiday_class, null, opts );
+    $.getJSON('https://www.googleapis.com/calendar/v3/calendars/'+opts.cal_holiday+'/events?key='+opts.api_key+'&orderBy=startTime&singleEvents=true&timeMin='+min_date+'&timeMax='+max_date+'&callback=?', function (json) {
+      if ( json.items ) {
+        update_date_class( json.items, opts.cal_holiday_class, null, opts );
       }
       loading--;
       if ( loading == 0 ) {
@@ -190,12 +192,12 @@
     }
   };
 
-  // 日付をISO8601拡張表記（YYYY-MM-DD）に
+  // 日付をISO8601拡張表記（YYYY-MM-DDThh:mm:ss+zone）に
   function date_format( year, month, day ) {
     if ( month < 10 ) { month = "0" + month; }
     if ( day   < 10 ) { day   = "0" + day;   }
 
-    return year + "-" + month + "-" + day;
+    return year + "-" + month + "-" + day + "T00%3A00%3A00Z";
   };
 
   // 各日付のクラスを更新
@@ -211,7 +213,7 @@
     // 得られた予定情報を処理
     $.each(items,function(i){
       // 予定の開始日だけを見る
-      var st = items[i].gd$when[0].startTime;
+      var st = items[i].start.date;
       var dt = st.match(/(\d{4})-(\d{2})-(\d{2})/);
       if ( dt ) {
         // 当月の予定だけを処理
@@ -222,7 +224,7 @@
           // 適用するクラスがオブジェクトならば、予定の内容により適用するクラスを変える
           var ac;
           if ( applyClass_is_object ) {
-            ac = applyClass[items[i].title.$t];
+            ac = applyClass[items[i].summary];
             // 該当する項目がなければ、デフォルト設定を利用
             if ( !ac ) {
               ac = applyClass["default"];
